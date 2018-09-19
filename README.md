@@ -1,4 +1,4 @@
-# The Eight Game
+# The Nine Game
 
 ## What is this?
 This is a recreation of "The Eight Game" from the demo of [The Stanley Parable](https://store.steampowered.com/app/221910/The_Stanley_Parable/). I highly recommend playing that game sometime, it's beautiful.

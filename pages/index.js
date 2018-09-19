@@ -6,6 +6,8 @@ import AudioPlayer from '../components/audio-player';
 import keyHandler from '../scripts/key-handler';
 import styles from '../styles/style.css';
 
+const eightSequence = [69, 73, 71, 72, 84];
+
 export default class Index extends React.Component {
   state = {display: 'none'};
 
@@ -13,7 +15,7 @@ export default class Index extends React.Component {
     this.audio = new AudioPlayer('/static/eight', this.play);
     this.audio.onEnded(this.hide);
 
-    keyHandler.keyUp(window, this.play);
+    keyHandler.keyUp(window, this.play, eightSequence);
   }
 
   show = () => {

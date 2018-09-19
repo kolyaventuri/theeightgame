@@ -6,6 +6,10 @@ html, body {
   height: 100%;
 }
 
+body {
+  background: #000;
+}
+
 * {
   overflow: hidden;
 }
@@ -26,6 +30,7 @@ html, body {
 }
 
 :local(.eight h1) {
+  color: #FFF;
   font-size: 90vh;
   padding: 0;
   margin: 0;

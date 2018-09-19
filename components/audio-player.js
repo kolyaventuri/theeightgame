@@ -1,6 +1,6 @@
 export default class AudioPlayer {
-  constructor(file) {
-    this.ready = false;
+  constructor(file, readyFn) {
+    this.readyFn = readyFn;
     this.player = new Audio();
     const canPlayMp3 = !!(this.player.canPlayType && this.player.canPlayType('audio/mpeg;').replace(/no/, ''));
 
@@ -11,15 +11,7 @@ export default class AudioPlayer {
 
   onEnded(cb) {
     if (typeof cb === 'function') {
-      player.addEventListener('ended', cb);
-    }
-  }
-
-  onReady(cb) {
-    this.readyFn = cb;
-
-    if (this.ready) {
-      cb();
+      this.player.addEventListener('ended', cb);
     }
   }
 
@@ -32,11 +24,10 @@ export default class AudioPlayer {
     player.loop = false;
     player.load();
 
-    player.addEventListener('canplaythrough', () => {
-      if (this.readyFn) {
-        this.readyFn();
-      }
-      this.ready = true;
-    });
+    player.addEventListener('canplaythrough', this.readyFn);
+  }
+
+  play() {
+    this.player.play();
   }
 }

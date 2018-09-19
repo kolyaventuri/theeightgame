@@ -1,5 +1,7 @@
 import React from 'react';
 
+import AudioPlayer from '../components/audio-player';
+
 import keyHandler from '../scripts/key-handler';
 import styles from '../styles/style.css';
 
@@ -7,15 +9,23 @@ export default class Index extends React.Component {
   state = {display: 'none'};
 
   componentDidMount() {
-    keyHandler.bindTo(window, this);
+    this.audio = new AudioPlayer('/static/eight', this.play);
+    this.audio.onEnded(this.hide);
+
+    keyHandler.keyUp(window, this.play);
   }
 
-  show() {
+  show = () => {
     this.setState({display: 'block'});
   }
 
-  hide() {
+  hide = () => {
     this.setState({display: 'none'});
+  }
+
+  play = () => {
+    this.audio.play();
+    this.show();
   }
 
   render() {

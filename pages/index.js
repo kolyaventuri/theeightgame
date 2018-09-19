@@ -1,15 +1,28 @@
-import keyPress from '../scripts/key-handler';
+import React from 'react';
 
+import keyHandler from '../scripts/key-handler';
 import styles from '../styles/style.css';
 
-const Index = () => (
-  <div onKeyDown={keyPress} className={styles.eight}>
-    <h1 id="eight">8</h1>
-  </div>
-);
+export default class Index extends React.Component {
+  state = {display: 'none'};
 
-Index.prototype.componentDidMount = () => {
-  console.log('Mounted');
-};
+  componentDidMount() {
+    keyHandler.bindTo(window, this);
+  }
 
-export default Index;
+  show() {
+    this.setState({display: 'block'});
+  }
+
+  hide() {
+    this.setState({display: 'none'});
+  }
+
+  render() {
+    return (
+      <div className={styles.eight} style={{display: this.state.display}}>
+        <h1 id="eight">8</h1>
+      </div>
+    );
+  }
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from '../components/head';
 
 import AudioPlayer from '../components/audio-player';
 
@@ -30,9 +31,12 @@ export default class Index extends React.Component {
 
   render() {
     return (
-      <div className={styles.eight} style={{display: this.state.display}}>
-        <h1 id="eight">8</h1>
-      </div>
+      <span>
+        <Head title="eight." />
+        <div className={styles.eight} style={{display: this.state.display}}>
+          <h1 id="eight">8</h1>
+        </div>
+      </span>
     );
   }
 }

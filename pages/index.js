@@ -9,21 +9,23 @@ import styles from '../styles/style.css';
 const eightSequence = [69, 73, 71, 72, 84];
 
 export default class Index extends React.Component {
-  state = {display: 'none'};
+  state = {
+    color: '#040404'
+  }
 
   componentDidMount() {
-    this.audio = new AudioPlayer('/static/eight', this.play);
+    this.audio = new AudioPlayer('/static/eight');
     this.audio.onEnded(this.hide);
 
     keyHandler.keyUp(window, this.play, eightSequence);
   }
 
   show = () => {
-    this.setState({display: 'block'});
+    this.setState({color: '#FFFFFF'});
   }
 
   hide = () => {
-    this.setState({display: 'none'});
+    this.setState({color: '#040404'});
   }
 
   play = () => {
@@ -32,11 +34,13 @@ export default class Index extends React.Component {
   }
 
   render() {
+    const {display, color} = this.state;
+
     return (
       <span>
         <Head title="eight." />
-        <div className={styles.eight} style={{display: this.state.display}}>
-          <h1 id="eight">8</h1>
+        <div className={styles.eight} style={{display: display}}>
+          <h1 id="eight" style={{color: color}}>8</h1>
         </div>
       </span>
     );

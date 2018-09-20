@@ -35,4 +35,11 @@ const keyUp = (elem, cb, sequence) => {
   });
 };
 
-export default {keyUp};
+const click = (elem, cb) => {
+  elem.addEventListener('click', cb);
+};
+
+export default {
+  keyUp,
+  click
+}
